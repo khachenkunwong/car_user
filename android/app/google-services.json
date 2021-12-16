@@ -1,41 +1,70 @@
 {
   "project_info": {
-    "project_number": "1068116881037",
-    "project_id": "vgistic02-9f77d",
-    "storage_bucket": "vgistic02-9f77d.appspot.com"
+    "project_number": "516147299121",
+    "project_id": "vgistic-16207",
+    "storage_bucket": "vgistic-16207.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1068116881037:android:ad5dfc2c09f93e10d03cc4",
+        "mobilesdk_app_id": "1:516147299121:android:658b8afb477825850ae610",
         "android_client_info": {
-          "package_name": "com.vgistik.car_user"
+          "package_name": "com.dev.car_user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1068116881037-1uqibrqtv0r86609er4eo3snvhcmj88b.apps.googleusercontent.com",
+          "client_id": "516147299121-r44mf7iq5ngf6sa11ji2ur4j9kfa740j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.vgistik.car_user",
+            "package_name": "com.dev.car_user",
             "certificate_hash": "88acebb35b6e0f60a555de53efdeeca8ef1405fc"
           }
         },
         {
-          "client_id": "1068116881037-fj5jo956oc1qppj1br16951nong6qdh2.apps.googleusercontent.com",
+          "client_id": "516147299121-u843jjf96pllcg4lvfe6p1vr3qoekgvn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCYSUxGPQp_EIUPXdYW9BFmSWi8gLgtfDY"
+          "current_key": "AIzaSyC17C41u_DzUsMTF1kwwEkF_hjyMh6Q6qo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1068116881037-fj5jo956oc1qppj1br16951nong6qdh2.apps.googleusercontent.com",
+              "client_id": "516147299121-u843jjf96pllcg4lvfe6p1vr3qoekgvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516147299121:android:e3ecb383d224c2810ae610",
+        "android_client_info": {
+          "package_name": "com.vgistik.car_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516147299121-u843jjf96pllcg4lvfe6p1vr3qoekgvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC17C41u_DzUsMTF1kwwEkF_hjyMh6Q6qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516147299121-u843jjf96pllcg4lvfe6p1vr3qoekgvn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

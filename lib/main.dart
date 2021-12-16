@@ -17,20 +17,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<AuthService>(
-          create: (_) => AuthService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-          create: (context) => context.read<AuthService>().authStateChanges,
-          initialData: null,
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Last_Login(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Last_Login(),
     );
   }
 }
@@ -38,11 +27,13 @@ class MyApp extends StatelessWidget {
 class Last_Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User?>();
-    print(user);
-    if (user != null) {
-      return OrderView();
-    }
-    return Login();
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Login();
+          }
+          return OrderView();
+        });
   }
 }
