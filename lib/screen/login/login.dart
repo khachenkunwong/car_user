@@ -553,20 +553,20 @@ class _LoginState extends State<Login> {
         );
       }
       // ต้องเอาออกเมื่อใช้เสร็จ
-      await db.setUsersPublic(
-          //ใช้ setProduct เพื่อเพิ่มหรือแก้ไขเอกสารไปยังฐานข้อมูล Cloud Firestore
-          users: UsersModel(
-            id: user.uid,
-            userName: '${user.displayName}',
-            state: false,
-            images: user.photoURL!,
-            location: '',
-            time: '',
-            phone: user.phoneNumber ?? '',
-            email: user.email ?? '',
-            address: '',
-          ),
-        );
+      // await db.setUsersPublic(
+      //     //ใช้ setProduct เพื่อเพิ่มหรือแก้ไขเอกสารไปยังฐานข้อมูล Cloud Firestore
+      //     users: UsersModel(
+      //       id: user.uid,
+      //       userName: '${user.displayName}',
+      //       state: false,
+      //       images: user.photoURL!,
+      //       location: '',
+      //       time: '',
+      //       phone: user.phoneNumber ?? '',
+      //       email: user.email ?? '',
+      //       address: '',
+      //     ),
+      //   );
     } catch (err) {
       print(err);
     }
