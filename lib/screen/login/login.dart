@@ -38,60 +38,7 @@ class _LoginState extends State<Login> {
   bool _busy = false;
   var user;
   // แสดงโปรไฟล์ของผู้ใช้ในหน้าจอใหม่
-  void _showUserProfilePage(firebase_auth.User user) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => Scaffold(
-          appBar: AppBar(
-            title: const Text('user profile'),
-          ),
-          body: ListView(
-            children: <Widget>[
-              ListTile(title: Text('User: $user')),
-              ListTile(title: Text('User id: ${user.uid}')), // id
-              ListTile(title: Text('Display name: ${user.displayName}')),
-              ListTile(
-                  title: Text(
-                      'Anonymous: ${user.isAnonymous}')), // เช็กว่าเป็น Anonymous
-              ListTile(title: Text('Email: ${user.email}')), // email
-              ListTile(
-                title: const Text('Profile photo: '),
-                trailing: user.photoURL != null
-                    ? CircleAvatar(
-                        //ภาพ Profile
-                        backgroundImage: NetworkImage(user.photoURL!),
-                      )
-                    : CircleAvatar(
-                        //ทำภาพเป็น ตัวอักษร
-                        child: Text(user.displayName![0]),
-                      ),
-              ),
-              ListTile(
-                title: Text(
-                    'Last sign in: ${user.metadata.lastSignInTime}'), //เข้าสู่ระบบครั้งล่าสุด
-              ),
-              ListTile(
-                title: Text(
-                    'Creation time: ${user.metadata.creationTime}'), //เวลาสร้างเเอ็กเคา
-              ),
-              ListTile(
-                  title: Text(
-                      'ProviderData: ${user.providerData}')), //ข้อมูลผู้ให้บริการ
-              ElevatedButton(
-                  onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => ProductListGoogleLogin()),
-                    // );
-                  },
-                  child: const Text('ถัดไป'))
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  
 
   @override
   void initState() {
