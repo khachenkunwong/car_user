@@ -5,7 +5,7 @@ import 'package:car_user/service/database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-
+// หน้านำทางโดย google map
 class GoogleMapPage extends StatefulWidget {
   final lat;
   final long;
@@ -108,21 +108,31 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
         label: Text('My location'),
         icon: Icon(Icons.near_me),
       ),
+      // ตัวนี้ใส่เพื่อให้โหลดหน้า google map ได้ ไม่ได้ทำเพื่อนำเอา cars มาแสดง
       body: StreamBuilder<List<CarsModel>>(
           stream: state1,
           builder: (context, snapshot) {
+            // currentLocation?.latitude ป้องกัน location ว่าง
             if (currentLocation?.latitude != null) {
               return Container(
                 child: GoogleMap(
                   zoomControlsEnabled: false,
+                  // เปิดเพื่อให้แสดงตำแหน่งตัวเราใน google map 
                   myLocationEnabled: true,
+                  // เข็มทิศ อันนี้ไม่เเน่ใจ
                   compassEnabled: true,
-                  mapToolbarEnabled: true, //เเถบเครื่องมือถ้าเป็น จริง
-                  rotateGesturesEnabled: true, //ตอบสนองการหมุนเมือเเตะ จริง
-                  scrollGesturesEnabled: true, //ตอบสนองการเลื่อนเมือเเตะ จริง
-                  zoomGesturesEnabled: true, //ตอบสนองการซูมเมือเเตะ จริง
+                  //เเถบเครื่องมือถ้าเป็น จริง
+                  mapToolbarEnabled: true, 
+                  //ตอบสนองการหมุนเมือเเตะ จริง
+                  rotateGesturesEnabled: true, 
+                  //ตอบสนองการเลื่อนเมือเเตะ จริง
+                  scrollGesturesEnabled: true, 
+                  //ตอบสนองการซูมเมือเเตะ จริง
+                  zoomGesturesEnabled: true, 
                   tiltGesturesEnabled: false,
-                  trafficEnabled: true, // เปิดการจราจร จริง
+                  // เปิดการจราจร จริง
+                  trafficEnabled: true, 
+                  // ชนิดข้อง google map เช่นเเบบมีสีเหมือนภาพถ่ายจากด้านบนกับเเบบสีขาวดำ
                   mapType: MapType.normal,
                   // markers: Set.from(controller.allMarkers),
 
@@ -136,6 +146,7 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
                 ),
               );
             }
+            // จะแสดงเมื่อ currentLocation?.latitude เมื่อค่าว่าง
             return Center(
               child: CircularProgressIndicator(),
             );

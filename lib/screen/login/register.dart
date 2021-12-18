@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 import 'forgot_password.dart';
-
+// หน้าที่ทำไว้เฉยๆเเต่ยังไม่ได้ใช้ตอนนี้
 class RegisterView extends StatefulWidget {
   @override
   _RegisterViewState createState() => _RegisterViewState();

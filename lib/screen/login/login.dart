@@ -17,7 +17,7 @@ import 'register.dart';
 
 final kFirebaseAnalytics = FirebaseAnalytics();
 
-// ต้องใส่ sha 1 ด้วยใน firebase โดย ทำการคอมเม็น android.enableJetifier=true ออก เเล้วถึงจะห้า shi 1 เห็นเเล้วเมือจะรันก็มาเอาคอมเม็นออกจาก android.enableJetifier=trueไม่งั้นมันจะรันไม่ออก
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -26,21 +26,21 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  //บันทัดที่ 30-31 เก็บค่าที่รับมาจากที่ผู้ใช้กรอก email และ password
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _auth = firebase_auth.FirebaseAuth.instance;
+  // เรียกใช้เพื่อติดต่อกับ Cloud Firestore เพี่อ get set updata delete
   Database db = Database.instance;
   firebase_auth.User? _user;
-  // If this._busy=true, the buttons are not clickable. This is to avoid
-  // clicking buttons while a previous onTap function is not finished.
-  // ถ้า this._busy=true ปุ่มต่างๆ จะไม่สามารถคลิกได้ นี่คือการหลีกเลี่ยง
-  // คลิกปุ่มในขณะที่ฟังก์ชัน onTap ก่อนหน้ายังไม่เสร็จสิ้น
+  // กำหนดเป็น false เพื่อทำให้ปุ่มlogin in google สามารถกดได้
   bool _busy = false;
+  // เอาใช้เพื่อ login ผ่าน google
   var user;
-  // แสดงโปรไฟล์ของผู้ใช้ในหน้าจอใหม่
   
 
   @override
+  // initState() กำหนดให้ทำงานหรือเรียกใช้งานตัวไหนตอนเปิดหน้านี้มาครังเเรก
   void initState() {
     super.initState();
     print('firebase == user');
@@ -54,31 +54,12 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    //Widget Button google login
-    final googleLoginBtn = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.blueAccent,
-      ),
-      onPressed: _busy
-          ? null
-          : () async {
-              setState(() => _busy = true);
-
-              final user = await _googleSignIn();
-
-              // setState(() => _busy = false);
-              if (mounted) {
-                setState(() => _busy = false);
-                print('กำลังทำงาน = $mounted');
-              }
-              print('_busy = $mounted');
-            },
-      child: const Text('Log in with Google'),
-    );
-
+    
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: SafeArea(
+        // ทำให้เลื่อนหน้าได้เเต้องระวังเมื่อใช้ร่วมกับ ListView จะใช้ร่วมกันไม่ได้ เช่น
+        // SingleChildScrollView เเล้วเรียก ListView ในข้าง มันจะ error
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -301,21 +282,21 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onPressed: () {
-                      final String email = emailController.text.trim();
-                      final String password = passwordController.text.trim();
+                      // final String email = emailController.text.trim();
+                      // final String password = passwordController.text.trim();
 
-                      if (email.isEmpty) {
-                        print("Email is Empty");
-                      } else {
-                        if (password.isEmpty) {
-                          print("Password is Empty");
-                        } else {
-                          context.read<AuthService>().login(
-                                email,
-                                password,
-                              );
-                        }
-                      }
+                      // if (email.isEmpty) {
+                      //   print("Email is Empty");
+                      // } else {
+                      //   if (password.isEmpty) {
+                      //     print("Password is Empty");
+                      //   } else {
+                      //     context.read<AuthService>().login(
+                      //           email,
+                      //           password,
+                      //         );
+                      //   }
+                      // }
                     },
                   ),
                 ),

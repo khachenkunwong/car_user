@@ -5,7 +5,7 @@ class ForgotPasswordView extends StatefulWidget {
   @override
   _ForgotPasswordViewState createState() => _ForgotPasswordViewState();
 }
-
+// หน้าลืมรหัสผ่านยังไม่ได้ใช้ตอนนี้
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   TextEditingController phoneController = TextEditingController();
 

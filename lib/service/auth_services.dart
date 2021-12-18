@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// login โดยการพิมพ์ข้อความลงไป
+// login โดยการพิมพ์ข้อความลงไป หรือก็คือ login email ยังไม่ได้ใช้ตอนนี้
 class AuthService {
   final FirebaseAuth _auth;
 
