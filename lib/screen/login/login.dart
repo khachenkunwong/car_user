@@ -17,7 +17,6 @@ import 'register.dart';
 
 final kFirebaseAnalytics = FirebaseAnalytics();
 
-
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -37,7 +36,6 @@ class _LoginState extends State<Login> {
   bool _busy = false;
   // เอาใช้เพื่อ login ผ่าน google
   var user;
-  
 
   @override
   // initState() กำหนดให้ทำงานหรือเรียกใช้งานตัวไหนตอนเปิดหน้านี้มาครังเเรก
@@ -54,7 +52,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: SafeArea(
@@ -451,7 +448,7 @@ class _LoginState extends State<Login> {
       print('กำลังเข้า store');
       // นำข้อมูลใน firestore มาเเสดง
       final userData = await FirebaseFirestore.instance
-          .collection('cars')
+          .collection('users')
           .doc(user!.uid)
           .get();
 
@@ -463,20 +460,18 @@ class _LoginState extends State<Login> {
         }
       });
       if (userData.data() == null) {
-        await db.setCars(
+        await db.setUsers(
           //ใช้ setProduct เพื่อเพิ่มหรือแก้ไขเอกสารไปยังฐานข้อมูล Cloud Firestore
-          cars: CarsModel(
+          user: UsersModel(
             id: user.uid,
             userName: '${user.displayName}',
             state: false,
-            statejob: false,
             images: user.photoURL!,
-            cartype: '',
             location: '',
             time: '',
-            cost: '',
             phone: user.phoneNumber ?? '',
             email: user.email ?? '',
+            address: '',
           ),
         );
       }

@@ -22,6 +22,19 @@ class Database {
       rethrow;
     }
   }
+  Future<void> setUsers({UsersModel? user}) async {
+    final _auth = firebase_auth.FirebaseAuth.instance;
+    firebase_auth.User? _user;
+    _user = _auth.currentUser;
+    final reference =
+        FirebaseFirestore.instance.collection('users').doc('${_user?.uid}');
+    // doc('users/SGxI1a2Zq9MKsTFvlGYzffd9aBn2/novel')
+    try {
+      await reference.set(user!.toMap());
+    } catch (err) {
+      rethrow;
+    }
+  }
 
   Future<void> setGetJob({UsersModel? users}) async {
     final _auth = firebase_auth.FirebaseAuth.instance;
@@ -138,6 +151,18 @@ class Database {
     return snapshots.map((snapshot) {
       return snapshot.docs.map((doc) {
         return UsersModel.fromMap(doc.data());
+      }).toList();
+    });
+  }
+  Stream<List<CarsModel>> getCarsPublic() {
+    final reference = FirebaseFirestore.instance.collection('carspublic');
+    //เรียงเอกสารจากมากไปน้อย โดยใช้ ฟิลด์ id
+    final snapshots = reference.snapshots();
+    //QuerySnapshot<Map<String, dynamic>> snapshot
+    //QuerySnapshot<Object?> snapshot
+    return snapshots.map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return CarsModel.fromMap(doc.data());
       }).toList();
     });
   }
