@@ -448,7 +448,7 @@ class _LoginState extends State<Login> {
       print('กำลังเข้า store');
       // นำข้อมูลใน firestore มาเเสดง
       final userData = await FirebaseFirestore.instance
-          .collection('users')
+          .collection('cars')
           .doc(user!.uid)
           .get();
 
@@ -460,18 +460,20 @@ class _LoginState extends State<Login> {
         }
       });
       if (userData.data() == null) {
-        await db.setUsers(
+        await db.setCars(
           //ใช้ setProduct เพื่อเพิ่มหรือแก้ไขเอกสารไปยังฐานข้อมูล Cloud Firestore
-          user: UsersModel(
+          cars: CarsModel(
             id: user.uid,
             userName: '${user.displayName}',
             state: false,
+            statejob: false,
             images: user.photoURL!,
+            cartype: '',
             location: '',
             time: '',
+            cost: '',
             phone: user.phoneNumber ?? '',
             email: user.email ?? '',
-            address: '',
           ),
         );
       }

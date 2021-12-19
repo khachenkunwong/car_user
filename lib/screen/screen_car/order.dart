@@ -136,10 +136,16 @@ class _OrderViewState extends State<OrderView> {
                       builder: (context, snapshot5) {
                         // กรณี่ถ้าข้อมูลที่เรียกใช้งาน error
                         if (snapshot5.hasError) {
-                          return Text("Something went wrong");
+                          return Text("error");
                         }
+
                         // เช็คว่ามีข้อมูล ฟิล์ใน document id ข้องผู้ใช้หรือไม่
                         if (snapshot5.hasData) {
+                          print(
+                              'snapshot5.data?.data() ${snapshot5.data?.data()}');
+                          if (snapshot5.data?.data() == null) {
+                            return Center(child: Text("รอ.."));
+                          }
                           // ไม่รู้
                           if (snapshot5.connectionState ==
                               ConnectionState.done) {
@@ -147,8 +153,9 @@ class _OrderViewState extends State<OrderView> {
                             // การกำหนด ! หน้า .data()เป็นการบอกว่า snapshot5.data
                             // มีข้อมูลเเน่นอน เเต่ถ้าไม่เเน่ใจว่ามีข้อมูลหรือไม่ให้ใส่ ? แทน !
                             // ! จะใช้บางกรณีเพราะมันจะทำให้ error ถ้าไม่มีข้อมูล
+
                             Map<String, dynamic> data =
-                                snapshot5.data!.data() as Map<String, dynamic>;
+                                snapshot5.data?.data() as Map<String, dynamic>;
                             this.state1 = data['state'];
                             // เช็ค ข้อมูลฟิล state ในข้อมูลผู้ใช้ว่าไม่ว่างหรือไม่ถ้าไม่ว่างเข้าเงื่อนไขนี้
                             // data['state'] type คือ bool ใน Cloud Firestore
@@ -714,12 +721,12 @@ class _OrderViewState extends State<OrderView> {
                                                   'id_userpublic = $id_userpublic');
                                               db.deleteGetJob(
                                                   users: UsersModel(
-                                                    // id จาก collection users
+                                                // id จาก collection users
                                                 id: '${snapshot00.data?[index].id}',
                                               ));
                                               db.deleteJobHistory(
                                                   users: UsersModel(
-                                                    // id จาก collection users
+                                                // id จาก collection users
                                                 id: '${snapshot00.data?[index].id}',
                                               ));
                                               db.setUsersPublic(
